@@ -1,5 +1,10 @@
 # 🥕Klasifikasi Sayuran Menggunakan Deep Learning
 
+<p align="center">
+  <b>Deep Learning-Based Vegetable Image Classification using CNN, MobileNetV2, and VGG</b><br>
+  Streamlit Web Dashboard for Real-Time Image Prediction
+</p>
+
 ## 📌 Deskripsi Proyek
 Proyek ini bertujuan untuk membangun sistem **klasifikasi gambar sayuran** berbasis **Deep Learning** yang mampu mengenali jenis sayuran dari sebuah gambar. Sistem ini mengimplementasikan dan membandingkan **tiga model CNN**, yaitu:
 1. CNN from Scratch
