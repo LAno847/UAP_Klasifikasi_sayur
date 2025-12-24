@@ -34,3 +34,13 @@ Dataset yang digunakan merupakan dataset citra sayuran yang disusun ke dalam **5
 - **Tomato**
 
 Struktur dataset:
+
+Vegetable Images/
+├── train/
+│ ├── Carrot/
+│ ├── Cucumber/
+│ ├── Potato/
+│ ├── Radish/
+│ └── Tomato/
+├── val/
+└── test/
