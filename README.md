@@ -35,16 +35,14 @@ Dataset yang digunakan merupakan dataset citra sayuran yang disusun ke dalam **5
 
 Struktur dataset:
 
-Vegetable Images/
-├── train/
-│ ├── Carrot/
-│ ├── Cucumber/
-│ ├── Potato/
-│ ├── Radish/
-│ └── Tomato/
-├── val/
-└── test/
 
+| train         | val       | test     |
+|---------------|-----------|----------|
+| Carrot        | Carrot    |Carrot    |
+| Cucumber      | Cucumber  |Cucumber  |
+| Potato        | Potato    |Potato    |
+| Radish        | Radish    |Radish    |
+| Tomato        | Tomato    |Tomato    |
 
 
 Dataset dibagi menjadi tiga bagian:
@@ -76,14 +74,6 @@ Model CNN dasar dibangun tanpa pretrained weights.
 - Dropout untuk mengurangi overfitting
 - Cocok sebagai baseline model
 
-**Kelebihan:**
-- Arsitektur sederhana
-- Mudah dipahami
-
-**Kekurangan:**
-- Akurasi relatif lebih rendah
-- Training lebih lambat untuk performa optimal
-
 ---
 
 ### 2️⃣ MobileNetV2 (Transfer Learning)
@@ -92,14 +82,6 @@ MobileNetV2 menggunakan pretrained weights dari **ImageNet**.
 - Ditambahkan Global Average Pooling dan Dense Layer
 - Ringan dan efisien
 
-**Kelebihan:**
-- Model ringan
-- Cepat saat inferensi
-- Cocok untuk aplikasi real-time
-
-**Kekurangan:**
-- Sedikit lebih sensitif terhadap kualitas data
-
 ---
 
 ### 3️⃣ VGG16 (Transfer Learning)
@@ -107,14 +89,6 @@ VGG16 juga menggunakan pretrained weights dari **ImageNet**.
 - Arsitektur deep dan stabil
 - Base model di-freeze
 - Custom classification head
-
-**Kelebihan:**
-- Akurasi stabil
-- Feature extraction kuat
-
-**Kekurangan:**
-- Ukuran model besar
-- Waktu inferensi lebih lama
 
 ---
 
@@ -127,9 +101,9 @@ Evaluasi dilakukan menggunakan **data test** dengan metrik:
 
 | Model         | Akurasi | Kecepatan Inferensi | Ukuran Model |
 |---------------|---------|---------------------|--------------|
-| CNN           | Tinggi  | Sedang              | Kecil        |
-| MobileNetV2   | Tinggi  | Sangat Cepat        | Sangat Kecil |
-| VGG16         | Tinggi  | Lebih Lambat        | Besar        |
+| CNN           | 96%     | Sedang              | Kecil        |
+| MobileNetV2   | 99%     | Sangat Cepat        | Sangat Kecil |
+| VGG16         | 99%     | Lebih Lambat        | Besar        |
 
 ### 🔹 Analisis
 - **CNN** cocok sebagai baseline, namun performanya masih kalah dibanding transfer learning.
