@@ -5,6 +5,12 @@
   Streamlit Web Dashboard for Real-Time Image Prediction
 </p>
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Deep%20Learning-TensorFlow-orange"/>
+  <img src="https://img.shields.io/badge/Web%20App-Streamlit-red"/>
+  <img src="https://img.shields.io/badge/Image%20Classification-CNN-blue"/>
+</p>
+
 ## 📌 Deskripsi Proyek
 Proyek ini bertujuan untuk membangun sistem **klasifikasi gambar sayuran** berbasis **Deep Learning** yang mampu mengenali jenis sayuran dari sebuah gambar. Sistem ini mengimplementasikan dan membandingkan **tiga model CNN**, yaitu:
 1. CNN from Scratch
