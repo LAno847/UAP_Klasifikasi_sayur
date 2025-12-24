@@ -2,18 +2,33 @@ import streamlit as st
 import tensorflow as tf
 import numpy as np
 import json
+import os
 from PIL import Image
+from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 
 # ===============================
 # CONFIG
 # ===============================
 st.set_page_config(
-    page_title="Dashboard Klasifikasi Sayuran",
+    page_title="Klasifikasi Sayuran - MobileNetV2",
     page_icon="🥕",
-    layout="wide"
+    layout="centered"
 )
 
 IMG_SIZE = (224, 224)
+
+# ===============================
+# CHECK REQUIRED FILES
+# ===============================
+REQUIRED_FILES = [
+    "model_mobilenetv2_5class.h5",
+    "label_sayur_5class.json"
+]
+
+for file in REQUIRED_FILES:
+    if not os.path.exists(file):
+        st.error(f"File tidak ditemukan: {file}")
+        st.stop()
 
 # ===============================
 # LOAD LABEL
@@ -24,30 +39,30 @@ with open("label_sayur_5class.json") as f:
 labels = {v: k for k, v in class_indices.items()}
 
 # ===============================
-# LOAD MODELS
+# LOAD MODEL
 # ===============================
 @st.cache_resource
-def load_models():
-    mobilenet = tf.keras.models.load_model("model_mobilenetv2_5class.h5")
-    
-    return mobilenet
+def load_model():
+    model = tf.keras.models.load_model("model_mobilenetv2_5class.h5")
+    return model
 
- mobilenet_model = load_models()
+model = load_model()
 
 # ===============================
 # PREPROCESS IMAGE
 # ===============================
-def preprocess_image(img):
+def preprocess_image(img: Image.Image):
     img = img.resize(IMG_SIZE)
-    img = np.array(img) / 255.0
+    img = np.array(img)
     img = np.expand_dims(img, axis=0)
+    img = preprocess_input(img)
     return img
 
 # ===============================
 # UI
 # ===============================
-st.title("🥕 Dashboard Klasifikasi Sayuran")
-st.write("Prediksi menggunakan **CNN**, **MobileNetV2**, dan **VGG16**")
+st.title("🥕 Klasifikasi Sayuran")
+st.write("Model: **MobileNetV2 (Transfer Learning)**")
 
 uploaded_file = st.file_uploader(
     "Upload gambar sayuran",
@@ -60,45 +75,28 @@ if uploaded_file:
 
     img_array = preprocess_image(image)
 
-    # ===============================
-    # PREDICTION
-    # ===============================
-    
-    mobilenet_pred = mobilenet_model.predict(img_array)[0]
-   
+    with st.spinner("Melakukan prediksi..."):
+        prediction = model.predict(img_array)[0]
 
-    def get_result(pred):
-        idx = np.argmax(pred)
-        return labels[idx], float(pred[idx]) * 100
-
-   
-    mob_label, mob_conf = get_result(mobilenet_pred)
-    
+    idx = np.argmax(prediction)
+    label = labels[idx]
+    confidence = prediction[idx] * 100
 
     # ===============================
-    # DISPLAY RESULTS
+    # DISPLAY RESULT
     # ===============================
-    st.markdown("## 📊 Hasil Prediksi")
-
-    col1 = st.columns(3)
-
-   
-
-    with col1:
-        st.metric("⚡ MobileNetV2", mob_label, f"{mob_conf:.2f}%")
-
-    
+    st.success(f"🌱 Prediksi: **{label}**")
+    st.metric("Confidence", f"{confidence:.2f}%")
 
     # ===============================
-    # DETAIL PROBABILITIES
+    # PROBABILITY CHART
     # ===============================
-    st.markdown("## 🔍 Detail Probabilitas")
+    st.markdown("### 📊 Probabilitas Tiap Kelas")
+    prob_dict = {labels[i]: float(prediction[i]) for i in range(len(prediction))}
+    st.bar_chart(prob_dict)
 
-   
-
-    st.write("### MobileNetV2")
-    st.bar_chart(mobilenet_pred)
-
-   
-
-
+# ===============================
+# FOOTER
+# ===============================
+st.markdown("---")
+st.caption("Experiment Dashboard - MobileNetV2 | UAP Machine Learning")
