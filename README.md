@@ -26,12 +26,24 @@ Proyek ini dikembangkan sebagai bagian dari tugas **Ujian Akhir Praktikum / Prak
 ## 📂 Dataset dan Preprocessing
 
 ### 🔹 Dataset
-Dataset yang digunakan merupakan dataset citra sayuran yang disusun ke dalam **5 kelas**, yaitu:
+Dataset yang digunakan adalah **Vegetable Image Dataset** yang diperoleh dari Kaggle:
+
+- **Link**: [Kaggle - Vegetable Image Dataset](https://www.kaggle.com/datasets/misrakahmed/vegetable-image-dataset)
+
+Dataset ini berisi kumpulan citra berbagai jenis sayuran yang digunakan untuk keperluan klasifikasi citra berbasis deep learning.
+
+Pada proyek ini, digunakan **5 kelas sayuran**, yaitu:
 - **Carrot**
 - **Cucumber**
 - **Potato**
 - **Radish**
 - **Tomato**
+
+Dataset dibagi ke dalam tiga bagian:
+- **Training set**: data untuk melatih model
+- **Validation set**: data untuk memantau performa selama training
+- **Testing set**: data untuk evaluasi akhir model
+
 
 Struktur dataset:
 
@@ -44,11 +56,6 @@ Struktur dataset:
 | Radish        | Radish    |Radish    |
 | Tomato        | Tomato    |Tomato    |
 
-
-Dataset dibagi menjadi tiga bagian:
-- **Train**: untuk pelatihan model
-- **Validation**: untuk validasi selama training
-- **Test**: untuk evaluasi akhir model
 
 ---
 
@@ -114,12 +121,61 @@ Berdasarkan hasil tersebut, **MobileNetV2** merupakan model paling optimal untuk
 
 ---
 
-## 🌐 Panduan Menjalankan Website (Dashboard) Secara Lokal
+## 🌐 Dashboard Klasifikasi Sayuran
+Dashboard dikembangkan menggunakan **Streamlit** dengan fitur:
+- Upload gambar sayuran
+- Prediksi menggunakan model Deep Learning
+- Menampilkan label kelas dan confidence
+- Visualisasi probabilitas prediksi
+
+---
+
+## ▶️ Panduan Menjalankan Sistem Secara Lokal
 
 ### 🔹 1. Persiapan Lingkungan
-Pastikan Python sudah terinstall (disarankan Python ≥ 3.9).
+Pastikan Python telah terinstall (disarankan Python ≥ 3.9).
 
 Install dependency:
 ```bash
-pip install streamlit tensorflow pillow numpy
+pip install streamlit tensorflow numpy pillow
+```
 
+📁 Project Structure
+```
+UAP_Klasifikasi_sayur/
+├── app.py
+├── label_sayur_5class.json
+├── model_cnn_sayur.h5
+├── model_mobilenetv2_5class.h5
+├── model_vgg16_5class.h5
+
+```
+▶️ Menjalankan Dashboard
+```
+-streamlit run app.py
+```
+
+🌐 Buka di browser:
+```
+-http://localhost:8501
+```
+
+---
+
+### Link Live Demo
+
+Coba aplikasi Klasifikasi Sayuran Menggunakan Deep Learning secara langsung dengan mengunjungi tautan di bawah ini:
+
+[🔗 **Demo Aplikasi Sederhana Streamlit**](https://uapklasifikasisayur-86pf48snctnwy659mfmbjz.streamlit.app/)
+
+
+---
+
+<h1 align="center">👤 Biodata 👤</h1>
+
+👤 **[Bastian Feraries Wijaya](https://github.com/LAno847)**  
+📘 **NIM**: 202210370311323
+🎓 **Program Studi**: Teknik Informatika  
+🏛️ **Universitas Muhammadiyah Malang**
+
+---
