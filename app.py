@@ -28,7 +28,6 @@ labels = {v: k for k, v in class_indices.items()}
 # ===============================
 @st.cache_resource
 def load_models():
-   =
     mobilenet = tf.keras.models.load_model("model_mobilenetv2_5class.h5")
     
     return mobilenet
@@ -101,4 +100,5 @@ if uploaded_file:
     st.bar_chart(mobilenet_pred)
 
    
+
 
