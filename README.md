@@ -1,4 +1,4 @@
-# 🥕 Dashboard Klasifikasi Sayuran Menggunakan Deep Learning
+# 🥕Klasifikasi Sayuran Menggunakan Deep Learning
 
 ## 📌 Deskripsi Proyek
 Proyek ini bertujuan untuk membangun sistem **klasifikasi gambar sayuran** berbasis **Deep Learning** yang mampu mengenali jenis sayuran dari sebuah gambar. Sistem ini mengimplementasikan dan membandingkan **tiga model CNN**, yaitu:
